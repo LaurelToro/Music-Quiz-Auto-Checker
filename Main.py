@@ -22,7 +22,6 @@ def export_to_file():
             output_file.write("Holdnavn: " + team_name.get() + "\n\n")
             output_file.write(file_contents.get("1.0", tk.END))
 
-
 def import_answer_file():
     global answer_file_path
     answer_file_path = filedialog.askopenfilename(title="Select a file", filetypes=[("All files", "*.*")])
@@ -35,12 +34,10 @@ def import_user_file():
     if user_file_path:
         u_selected_file_label.config(text=f"Selected: {user_file_path}")
 
-
 def read_file():
     read_button.config(state=tk.DISABLED)
     loading_label.config(text="Reading files, please wait...")
     threading.Thread(target=process_files, daemon=True).start()
-
 
 def process_files():
     answerkey(answer_file_path)
@@ -49,7 +46,6 @@ def process_files():
     crosscheck_results = crosscheck(answer_contents, user_contents)
 
     root.after(0, show_results, answer_contents, user_contents, crosscheck_results)
-
 
 def show_results(answer_contents, user_contents, crosscheck_results):
 
@@ -61,8 +57,6 @@ def show_results(answer_contents, user_contents, crosscheck_results):
     read_button.config(state=tk.NORMAL)
     os.remove("Program\\Pictures\\CleanImages\\CleanimageAnswerKey.png")
     os.remove("Program\\Pictures\\CleanImages\\CleanimageAnswerSheet.png")
-
-
 
 root = tk.Tk()
 team_name = tk.StringVar()
